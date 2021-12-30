@@ -207,3 +207,23 @@ async function bootstrap() {
 bootstrap();
 ```
 
+## Database Configuration
+
+### postgreSQL 설치하기
+
+https://postgresapp.com/
+
+postgre앱, postico앱 설치하기
+
+### 데이터베이스 만들기
+
+postico앱에서 데이터 베이스 추가
+
+### 유저 패스워드 변경하기
+
+추가한 데이터베이스를 postgre 앱에서 실행하여 터미널을 띄운후에 명령어 입력
+
+```sh
+ALTER USER dunz WITH PASSWORD '12345'
+```
+
