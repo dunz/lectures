@@ -236,3 +236,33 @@ ALTER USER dunz WITH PASSWORD '12345'
 ```sh
 npm install --save @nestjs/typeorm typeorm pg
 ```
+
+### typeorm 연결 옵션 설정하기
+
+> https://github.com/typeorm/typeorm <br/>
+> `ormconfig.json`파일에 작성해도 되고 forRoot내부에 옵션으로 직접 넣어줄수도 있다
+
+`src/app.module.ts`
+
+```ts
+@Module({
+  imports: [
+    ...
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'dunz',
+      password: '12345', // localhost 연결시에는 패스워드를 체크하지 않는다
+      database: 'nuber-eats',
+      synchronize: true, // typeorm이 데이터베이스에 연결할때 현재 모듈의 상태로 마이그레이션 할지 여부
+      logging: true,
+    }),
+    ...
+  ],
+  controllers: [],
+  providers: [],
+})
+export class AppModule {}
+
+```
