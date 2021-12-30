@@ -152,5 +152,55 @@ export class RestaurantsResolver {
 }
 ```
 
+### Class Validator 사용하기
 
+설치
+
+```sh
+npm i class-validator
+```
+
+적용하기
+
+`src/restaurants/dtos/create-restaurant.dto.ts`
+
+```ts
+import { ArgsType, Field } from '@nestjs/graphql';
+import { IsBoolean, IsString, Length } from 'class-validator';
+
+@ArgsType()
+export class CreateRestaurantDto {
+  @Field(() => String)
+  @IsString()
+  @Length(5, 10)
+  name: string;
+
+  @Field(() => Boolean)
+  @IsBoolean()
+  isVegan: boolean;
+
+  @Field(() => String)
+  @IsString()
+  address: string;
+
+  @Field(() => String)
+  @IsString()
+  ownerName: string;
+}
+```
+
+`src/main.ts`
+
+```ts
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import { ValidationPipe } from '@nestjs/common';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  app.useGlobalPipes(new ValidationPipe());
+  await app.listen(3000);
+}
+bootstrap();
+```
 
