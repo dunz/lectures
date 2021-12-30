@@ -153,7 +153,7 @@ export class RestaurantsResolver {
 ```
 
 > `@InputType`은 하나의 ObjectType으로 묶어서 인자를 넘길수 있고<br/>
-> `@ArgsType`은 하나의 클래스로 선언하지만 해당 클래스의 프로퍼티들을 풀어서 넘길수 있다
+> `@ArgsType`은 하나의 클래스로 선언하지만 해당 클래스의 프로퍼티들을 풀어서 넘겨준다
 
 ### Class Validator 사용하기
 
