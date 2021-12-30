@@ -65,6 +65,39 @@ import { RestaurantsResolver } from './restaurants.resolver';
 export class RestaurantsModule {}
 ```
 
+### Entity 추가
+
+`src/restaurants/entities/restaurant.entity.ts`
+
+```ts
+import { Field, ObjectType } from '@nestjs/graphql';
+
+@ObjectType()
+export class Restaurant {
+  @Field(() => String)
+  name: string;
+
+  @Field(() => Boolean, { nullable: true })
+  isGood?: boolean;
+}
+```
+
+`src/restaurants/restaurants.resolver.ts`
+
+```ts
+import { Query, Resolver } from '@nestjs/graphql';
+import { Restaurant } from './entities/restaurant.entity';
+
+@Resolver()
+export class RestaurantsResolver {
+  @Query(() => Restaurant)
+  myRestaurant() {
+    return true;
+  }
+}
+```
+
+
 
 
 
