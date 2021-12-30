@@ -377,3 +377,5 @@ npm i joi
 })
 export class AppModule {}
 ```
+
+## 3. Typeorm and Nest
