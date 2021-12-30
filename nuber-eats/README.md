@@ -51,6 +51,7 @@ export class RestaurantsResolver {
     return true;
   }
 }
+```
 
 `src/restaurants/restaurants.module.ts`
 
