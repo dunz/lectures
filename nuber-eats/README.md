@@ -344,3 +344,36 @@ export class AppModule {}
 ```
 
 > `TypeOrmModule.forRoot`보다 `ConfigModule.forRoot`가 더 먼저 실행되어야 한다 (순서중요)
+
+### 환경변수 벨리데이션 추가하기
+
+joi 설치하기
+```sh
+npm i joi
+```
+
+`src/app.module.ts`
+
+```ts
+@Module({
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: process.env.NODE_ENV === 'dev' ? '.env.dev' : '.env.test',
+      ignoreEnvFile: process.env.NODE_ENV === 'prod', // 환경변수 파일을 무시할 조건 설정
+      validationSchema: Joi.object({
+        NODE_ENV: Joi.string().valid('dev', 'test', 'prod').required(),
+        DB_HOST: Joi.string().required(),
+        DB_PORT: Joi.string().required(),
+        DB_USERNAME: Joi.string().required(),
+        DB_PASSWORD: Joi.string().required(),
+        DB_NAME: Joi.string().required(),
+      }),
+    }),
+    ...
+  ],
+  controllers: [],
+  providers: [],
+})
+export class AppModule {}
+```
