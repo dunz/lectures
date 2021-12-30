@@ -266,3 +266,17 @@ npm install --save @nestjs/typeorm typeorm pg
 export class AppModule {}
 
 ```
+
+### 환경변수 설정하기
+
+> https://docs.nestjs.com/techniques/configuration
+
+```sh
+npm i --save @nestjs/config
+```
+
+> 해당 패키지는 내부적으로 dotenv를 사용한다
+
+`cross-env` 설치하여 환경 변수 파일 
+
+
