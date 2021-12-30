@@ -271,12 +271,38 @@ export class AppModule {}
 
 > https://docs.nestjs.com/techniques/configuration
 
+1. config 모듈 설치하기
+
 ```sh
 npm i --save @nestjs/config
 ```
 
 > 해당 패키지는 내부적으로 dotenv를 사용한다
 
-`cross-env` 설치하여 환경 변수 파일 
+2. `cross-env` 설치하여 `.env.dev.`, `.env.test` 추가하기
+
+3. `package.json`에 환경변수 설정 스크립트 추가하기: `"start:dev": "cross-env ENV=dev nest start --watch",`
+
+4. config 모듈 추가하기
+
+`src/app.module.ts`
+
+```ts
+@Module({
+  imports: [
+    ...
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: process.env.NODE_ENV === 'dev' ? '.env.dev' : '.env.test',
+    }),
+    ...
+  ],
+  controllers: [],
+  providers: [],
+})
+export class AppModule {}
+
+```
+
 
 
