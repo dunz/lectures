@@ -1,4 +1,4 @@
-## Introduction
+## 0. Introduction
 
 ### nest 프로젝트 설치하기
 ```sh
@@ -6,7 +6,7 @@ nest g application
   > nuber-eats-backend
 ```
 
-## GraphQL API
+## 1. GraphQL API
 
 ### GraphQL 설치하기
 
@@ -207,7 +207,7 @@ async function bootstrap() {
 bootstrap();
 ```
 
-## Database Configuration
+## 2. Database Configuration
 
 ### postgreSQL 설치하기
 
@@ -227,3 +227,12 @@ postico앱에서 데이터 베이스 추가
 ALTER USER dunz WITH PASSWORD '12345'
 ```
 
+### typeorm 설치하기
+
+> https://docs.nestjs.com/techniques/database
+
+추가적으로 postgreSQL 용 드라이버인 `pg`도 같이 설치해준다
+
+```sh
+npm install --save @nestjs/typeorm typeorm pg
+```
