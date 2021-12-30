@@ -301,8 +301,46 @@ npm i --save @nestjs/config
   providers: [],
 })
 export class AppModule {}
-
 ```
 
+### 환경설정 `.env.dev` 파일로 옮기기
 
+`.env.dev`
 
+```txt
+DB_HOST=localhost
+DB_PORT=5432
+DB_USERNAME=dunz
+DB_PASSWORD=12345
+DB_NAME=nuber-eats
+```
+
+`src/app.module.ts`
+
+```ts
+@Module({
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: process.env.NODE_ENV === 'dev' ? '.env.dev' : '.env.test',
+      ignoreEnvFile: process.env.NODE_ENV === 'prod', // 환경변수 파일을 무시할 조건 설정
+    }),
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: process.env.DB_HOST,
+      port: Number(process.env.DB_PORT),
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
+      synchronize: true, // typeorm이 데이터베이스에 연결할때 현재 모듈의 상태로 마이그레이션 할지 여부
+      logging: true,
+    }),
+    ...
+  ],
+  controllers: [],
+  providers: [],
+})
+export class AppModule {}
+```
+
+> `TypeOrmModule.forRoot`보다 `ConfigModule.forRoot`가 더 먼저 실행되어야 한다 (순서중요)
