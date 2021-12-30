@@ -114,8 +114,43 @@ export class RestaurantsResolver {
 }
 ```
 
+### ArgsType 추가하기
 
+`src/restaurants/dtos/create-restaurant.dto.ts`
 
+```ts
+import { Args, ArgsType, Field, InputType } from '@nestjs/graphql';
+
+@ArgsType()
+export class CreateRestaurantDto {
+  @Field(() => String)
+  name: string;
+
+  @Field(() => Boolean)
+  isVegan: boolean;
+
+  @Field(() => String)
+  address: string;
+
+  @Field(() => String)
+  ownerName: string;
+}
+```
+
+`src/restaurants/restaurants.resolver.ts`
+
+```ts
+@Resolver(() => Restaurant)
+export class RestaurantsResolver {
+  ...
+
+  @Mutation(() => Boolean)
+  createRestaurant(@Args() createRestaurantDto: CreateRestaurantDto) {
+    console.log('createRestaurantInput', createRestaurantDto);
+    return true;
+  }
+}
+```
 
 
 
