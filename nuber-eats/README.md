@@ -97,7 +97,22 @@ export class RestaurantsResolver {
 }
 ```
 
+### Args 추가해보기
 
+`src/restaurants/restaurants.resolver.ts`
+
+```ts
+import { Args, Query, Resolver } from '@nestjs/graphql';
+import { Restaurant } from './entities/restaurant.entity';
+
+@Resolver(() => Restaurant)
+export class RestaurantsResolver {
+  @Query(() => [Restaurant])
+  restaurants(@Args('veganOnly') veganOnly: boolean): Restaurant[] {
+    return [];
+  }
+}
+```
 
 
 
