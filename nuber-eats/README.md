@@ -32,12 +32,12 @@ npm i @nestjs/graphql graphql@^15 apollo-server-express
 })
 ```
 
-### 임의의 모듈 추가
+### 임의의 모듈 추가하기
 ```sh
 nest  g mo restaurants
 ```
 
-### resolver 추가
+### resolver 추가하기
 
 `src/restaurants/restaurants.resolver.ts`
 
@@ -65,7 +65,7 @@ import { RestaurantsResolver } from './restaurants.resolver';
 export class RestaurantsModule {}
 ```
 
-### Entity 추가
+### Entity 추가하기
 
 `src/restaurants/entities/restaurant.entity.ts`
 
@@ -97,7 +97,7 @@ export class RestaurantsResolver {
 }
 ```
 
-### Args 추가해보기
+### Args 추가하기
 
 `src/restaurants/restaurants.resolver.ts`
 
