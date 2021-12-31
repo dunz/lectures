@@ -353,7 +353,7 @@ export class MoviesModule {}
 
 ### 권장 문법
 
-기본적으로 express 위에서 nestjs가 돌아가기 때문에 express처럼 req, res 인자를 받아올수 있다
+기본적으로 express 위에서 nestjs가 돌아가기 때문에 express처럼 req, res 인자를 직접 받아올수 있다
 
 ```ts
 home(@Req() req, @Res res) {
