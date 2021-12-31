@@ -295,5 +295,5 @@ export class UpdateMovieDto extends PartialType<CreateMovieDto>(
 ) {}
 ```
 
-이렇게 하게되면 `CreateMoviDto`의 벨리데이션은 동일하게 적용되면서 옵셔널 한 값의 DTO를 중복코드없이 쉽게 만들수 있다
+이렇게 하게되면 `CreateMoviDto`의 벨리데이션은 동일하게 적용하면서 옵셔널 한 값의 DTO를 중복코드없이 쉽게 만들수 있다
 
