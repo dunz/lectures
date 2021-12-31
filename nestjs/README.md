@@ -284,6 +284,12 @@ export class CreateMovieDto {
 
 ### DTO PartialType으로 옵셔널 타입 적용하기
 
+`@nestjs/mapped-types` 설치하기
+
+```sh
+$ npm install @nestjs/mapped-types
+```
+
 `src/movies/entities/dto/update-movie.dto.ts`
 
 ```ts
