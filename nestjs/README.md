@@ -69,3 +69,59 @@ export class MoviesController {
   }
 }
 ```
+
+### Body, Query 값 받아오기
+
+`src/movies/movies.controller.ts`
+
+```ts
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
+
+@Controller('movies')
+export class MoviesController {
+  @Get()
+  getAll() {
+    return 'This will return all movies';
+  }
+
+  @Get('search')
+  search(@Query('title') title: string) {
+    return `We are searching for a movie tish a title ${title}`;
+  }
+
+  @Get(':id')
+  getOne(@Param('id') movieId: string) {
+    return `This will return one movie ${movieId}`;
+  }
+
+  @Post()
+  create(@Body() moviData) {
+    return moviData;
+  }
+
+  @Delete(':id')
+  remove(@Param('id') movieId: string) {
+    return `This will delete a movie with the id: ${movieId}`;
+  }
+
+  @Patch(':id')
+  patch(@Param('id') movieId: string, @Body() updateData) {
+    return {
+      updateMovie: movieId,
+      ...updateData,
+    };
+  }
+}
+```
+
+> - 객체를 리턴할 경우 자동으로 json으로 파싱해서 응답한다
+> - 같은 뎁스의 Get 라우팅 중 고정주소가 다이나믹파라미터의 아래에 있을경우 고정주소전에 다이나믹 파라미터로 인식되기 때문에 고정 주소를 위로 올려야한다 (순서 중요)
