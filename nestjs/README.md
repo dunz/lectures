@@ -307,3 +307,46 @@ export class UpdateMovieDto extends PartialType<CreateMovieDto>(
 
 `app.module`에는 `app.controller`와 `app.service`만 controllers, providers로 주입해주고 그 외의 것들은 하나의 모듈로 감싸서
 imports 에 넣어주는 구조가 권장된다
+
+`src/app.module.ts`
+
+```ts
+import { Module } from '@nestjs/common';
+import { MoviesModule } from './movies/movies.module';
+import { AppController } from './app.controller';
+
+@Module({
+  imports: [MoviesModule],
+  controllers: [AppController],
+  providers: [],
+})
+export class AppModule {}
+```
+
+`src/app.controller.ts`
+
+```ts
+import { Controller, Get } from '@nestjs/common';
+
+@Controller()
+export class AppController {
+  @Get()
+  home() {
+    return 'Welcome to my API';
+  }
+}
+```
+
+`src/movies/movies.module.ts`
+
+```ts
+import { Module } from '@nestjs/common';
+import { MoviesController } from './movies.controller';
+import { MoviesService } from './movies.service';
+
+@Module({
+  controllers: [MoviesController],
+  providers: [MoviesService],
+})
+export class MoviesModule {}
+```
