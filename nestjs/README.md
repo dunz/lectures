@@ -120,7 +120,7 @@ export class MoviesController {
 > - 객체를 리턴할 경우 자동으로 json으로 파싱해서 응답한다
 > - 같은 뎁스의 Get 라우팅 중 고정주소가 다이나믹파라미터의 아래에 있을경우 고정주소전에 다이나믹 파라미터로 인식되기 때문에 고정 주소를 위로 올려야한다 (순서 중요)
 
-### Entity 만든 후 서비스에서 비즈니스로직 연동하기
+### Entity 만든 후 서비스에서 비즈니스로직 만들기
 
 엔티티 만들기
 
@@ -134,6 +134,8 @@ export class Movie {
   genres: string[];
 }
 ```
+
+비즈니스 로직 만들기
 
 `src/movies/movies.service.ts`
 
