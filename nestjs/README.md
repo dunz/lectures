@@ -230,3 +230,36 @@ export class MoviesController {
   }
 }
 ```
+
+### DTO 벨리데이션 추가하기
+
+`class-validator`, `class-transformer` 설치
+
+```sh
+$ npm install class-validator class-transformer
+```
+
+`src/main.ts`
+
+```ts
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import { ValidationPipe } from '@nestjs/common';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+    }),
+  );
+  await app.listen(3000);
+}
+bootstrap();
+```
+
+> - whitelist: DTO에 해당하지 않은 키값은 무시
+> - forbidNonWhitelisted: DTO에 해당하지 않는 키값을 보낼경우 오류
+> - transform: 선언한 파라미터 타입에 맞게 요청으로 받은 데이터를 변환 처리한 후에 컨트롤러로 넘김
