@@ -281,3 +281,19 @@ export class CreateMovieDto {
 > - whitelist: DTO에 해당하지 않은 키값은 무시
 > - forbidNonWhitelisted: DTO에 해당하지 않는 키값을 보낼경우 오류
 > - transform: 선언한 파라미터 타입에 맞게 요청으로 받은 데이터를 변환 처리한 후에 컨트롤러로 넘김
+
+### DTO PartialType으로 옵셔널 타입 적용하기
+
+`src/movies/entities/dto/update-movie.dto.ts`
+
+```ts
+import { CreateMovieDto } from './create-movie.dto';
+import { PartialType } from '@nestjs/mapped-types';
+
+export class UpdateMovieDto extends PartialType<CreateMovieDto>(
+  CreateMovieDto,
+) {}
+```
+
+이렇게 하게되면 `CreateMoviDto`의 벨리데이션은 동일하게 적용되면서 옵셔널 한 값의 DTO를 중복코드없이 쉽게 만들수 있다
+
