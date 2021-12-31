@@ -350,3 +350,16 @@ import { MoviesService } from './movies.service';
 })
 export class MoviesModule {}
 ```
+
+### 권장 문법
+
+기본적으로 express 위에서 nestjs가 돌아가기 때문에 express처럼 req, res 인자를 받아올수 있다
+
+```ts
+home(@Req() req, @Res res) {
+  ...
+}
+```
+
+
+하지만 이 경우 nestjs가 express에 대한 의존도가 높아져 훗날 fastify로 마이그레이션 시 문제가 발생하기 때문에 사용하지 않는걸 권장한다
