@@ -306,4 +306,4 @@ export class UpdateMovieDto extends PartialType<CreateMovieDto>(
 ### 구조 정리하기
 
 `app.module`에는 `app.controller`와 `app.service`만 controllers, providers로 주입해주고 그 외의 것들은 하나의 모듈로 감싸서
-imports 에 넣어주는 구조가 
+imports 에 넣어주는 구조가 권장된다
