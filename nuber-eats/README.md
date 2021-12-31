@@ -379,3 +379,65 @@ export class AppModule {}
 ```
 
 ## 3. Typeorm and Nest
+
+### Typeorm Entity 만들기
+
+`src/restaurants/entities/restaurant.entity.ts`
+
+클래스 하나로 graphql 스키마와 typeorm 엔티티를 동시에 만들수있다
+
+```ts
+import { Field, ObjectType } from '@nestjs/graphql';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+
+@ObjectType()
+@Entity()
+export class Restaurant {
+  @Field(() => Number)
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Field(() => String)
+  @Column()
+  name: string;
+
+  @Field(() => Boolean)
+  @Column()
+  isVegan: boolean;
+
+  @Field(() => String)
+  @Column()
+  address: string;
+
+  @Field(() => String)
+  @Column()
+  ownerName: string;
+
+  @Field(() => String)
+  @Column()
+  categoryName: string;
+}
+```
+
+`src/app.module.ts`
+
+typeorm 설정에 엔티티 할당해주어야 한다
+
+
+```ts
+import { Restaurant } from './restaurants/entities/restaurant.entity';
+
+@Module({
+  imports: [
+    ...
+    TypeOrmModule.forRoot({
+      ...
+      entities: [Restaurant],
+    }),
+    ...
+  ],
+  controllers: [],
+  providers: [],
+})
+export class AppModule {}
+```
