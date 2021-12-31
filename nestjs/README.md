@@ -260,6 +260,24 @@ async function bootstrap() {
 bootstrap();
 ```
 
+`src/movies/entities/dto/create-movie.dto.ts`
+
+
+```ts
+import { IsNumber, IsString } from 'class-validator';
+
+export class CreateMovieDto {
+  @IsString()
+  readonly title: string;
+
+  @IsNumber()
+  readonly year: number;
+
+  @IsString({ each: true })
+  readonly genres: string[];
+}
+```
+
 > - whitelist: DTO에 해당하지 않은 키값은 무시
 > - forbidNonWhitelisted: DTO에 해당하지 않는 키값을 보낼경우 오류
 > - transform: 선언한 파라미터 타입에 맞게 요청으로 받은 데이터를 변환 처리한 후에 컨트롤러로 넘김
