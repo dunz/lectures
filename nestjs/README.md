@@ -16,7 +16,7 @@ NestJs는 Node.js의 프레임워크로 express 위에서 동작하고 fastify�
 
 컨트롤러 만들기
 ```sh
-nest g co
+$ nest g co
   > movies
 ```
 
