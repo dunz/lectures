@@ -364,4 +364,4 @@ home(@Req() req, @Res res) {
 
 하지만 이 경우 nestjs가 express에 대한 의존도가 높아져 훗날 fastify로 마이그레이션 시 문제가 발생하기 때문에 사용하지 않는걸 권장한다
 
-참고로 fastify는 express보다 약 2배정도 
+참고로 fastify는 express보다 약 2배정도 빠르다
