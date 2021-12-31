@@ -88,11 +88,8 @@ import {
 
 @Controller('movies')
 export class MoviesController {
-  @Get()
-  getAll() {
-    return 'This will return all movies';
-  }
-
+  ...
+  
   @Get('search')
   search(@Query('title') title: string) {
     return `We are searching for a movie tish a title ${title}`;
@@ -108,10 +105,7 @@ export class MoviesController {
     return moviData;
   }
 
-  @Delete(':id')
-  remove(@Param('id') movieId: string) {
-    return `This will delete a movie with the id: ${movieId}`;
-  }
+  ...
 
   @Patch(':id')
   patch(@Param('id') movieId: string, @Body() updateData) {
