@@ -11,4 +11,61 @@ NestJs는 Node.js의 프레임워크로 express 위에서 동작하고 fastify�
 
 ## 2. Rest API
 
+### 컨트롤러 만들고 CRUD 라우팅 만들기
 
+
+컨트롤러 만들기
+```sh
+nest g co
+  > movies
+```
+
+`src/app.module.ts`
+
+```ts
+import { Module } from '@nestjs/common';
+import { MoviesController } from './movies/movies.controller';
+
+@Module({
+  imports: [],
+  controllers: [MoviesController],
+  providers: [],
+})
+export class AppModule {}
+```
+
+CRUD 만들기
+
+`src/movies/movies.controller.ts`
+
+```ts
+import { Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+
+@Controller('movies')
+export class MoviesController {
+  @Get()
+  getAll() {
+    return 'This will return all movies';
+  }
+
+  @Get('/:id')
+  getOne(@Param('id') movieId: string) {
+    return `This will return one movie ${movieId}`;
+  }
+
+  @Post()
+  create() {
+    return `This will create a movie`;
+  }
+
+  @Delete('/:id')
+  remove(@Param('id') movieId: string) {
+    return `This will delete a movie with the id: ${movieId}`;
+  }
+
+  @Patch('/:id')
+  patch(@Param('id') movieId: string) {
+    return `This will patch a movie with the id: ${movieId}`;
+  }
+}
+```
