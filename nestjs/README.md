@@ -303,3 +303,7 @@ export class UpdateMovieDto extends PartialType<CreateMovieDto>(
 
 이렇게 하게되면 `CreateMoviDto`의 벨리데이션은 동일하게 적용하면서 옵셔널 한 값의 DTO를 중복코드없이 쉽게 만들수 있다
 
+### 구조 정리하기
+
+`app.module`에는 `app.controller`와 `app.service`만 controllers, providers로 주입해주고 그 외의 것들은 하나의 모듈로 감싸서
+imports 에 넣어주는 구조가 
